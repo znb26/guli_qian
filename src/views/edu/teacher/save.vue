@@ -6,7 +6,7 @@
         <el-input v-model="teacher.name"/>
       </el-form-item>
       <el-form-item label="讲师排序">
-        <el-input-number v-model="teacher.sort" controls-position="right" :min="0"/>
+        <el-input-number v-model="teacher.sort" controls-position="right" min="0"/>
       </el-form-item>
       <el-form-item label="讲师头衔">
         <el-select v-model="teacher.level" clearable placeholder="请选择">
@@ -72,7 +72,7 @@
         getInfo(id) {
             teacherApi.getTeacherInfo(id)
                 .then(response => {
-                this.teacher = response.data.teacher
+                  this.teacher = response.data.teacher
                 })
         },
         saveOrUpdate() {
