@@ -100,6 +100,7 @@ export default {
     data() {
         return {
             saveBtnDisabled:false,
+            saveVideoBtnDisabled:false,
             courseId:'',//课程id
             chapterVideoList:[],
             chapter:{ //封装章节数据
@@ -165,11 +166,12 @@ export default {
                     //提示
                     this.$message({
                         type: 'success',
-                        message: '添加小节成功!'
+                        message: '添加章节成功!'
                     });
                     //刷新页面
                     this.getChapterVideo()
                 })
+            
         },
         saveOrUpdateVideo() {
             this.addVideo()
