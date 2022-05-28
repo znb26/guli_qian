@@ -40,6 +40,7 @@ export default {
   },
 
   created() {
+    console.log('111')
     //获取路由课程id值
     if(this.$route.params && this.$route.params.id) {
       this.courseId = this.$route.params.id
@@ -59,7 +60,7 @@ export default {
     },
     previous() {
       console.log('previous')
-      this.$router.push({ path: '/course/chapter/1' })
+      this.$router.push({ path: '/course/chapter/' + this.courseId })
     },
 
     publish() {
