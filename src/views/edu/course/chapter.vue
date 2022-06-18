@@ -80,6 +80,7 @@
         <el-radio :label="false">默认</el-radio>
       </el-radio-group>
     </el-form-item>
+
     <el-form-item label="上传视频">
         <el-upload
             :on-success="handleVodUploadSuccess"
@@ -101,6 +102,7 @@
         </el-tooltip>
         </el-upload>
     </el-form-item>
+
   </el-form>
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogVideoFormVisible = false">取 消</el-button>
@@ -118,7 +120,6 @@ export default {
     data() {
         return {
             saveBtnDisabled:false,
-            saveVideoBtnDisabled:false,
             courseId:'',//课程id
             chapterVideoList:[],
             chapter:{ //封装章节数据
@@ -130,12 +131,12 @@ export default {
                 sort: 0,
                 free: 0,
                 videoSourceId: '',
-                videoOriginalName: ''
+                videoOriginalName:''//视频名称
             },
             dialogChapterFormVisible:false,//章节弹框
             dialogVideoFormVisible:false, //小节弹框
-            BASE_API: process.env.VUE_APP_BASE_API, // 接口API地址 
-            fileList : [] //上传文件列表
+            fileList: [],//上传文件列表
+            BASE_API: process.env.VUE_APP_BASE_API, // 接口API地址
         }
     },
     created() {
@@ -172,6 +173,8 @@ export default {
         },
         //上传视频成功调用的方法
         handleVodUploadSuccess(response, file, fileList) {
+            console.log(response.data.videoId)
+            console.log(file.name)
             //上传视频id赋值
             this.video.videoSourceId = response.data.videoId
             //上传视频名称赋值
@@ -205,13 +208,19 @@ export default {
         openVideo(chapterId) {
             //弹框
             this.dialogVideoFormVisible = true
+            //清空
+            this.video = {}
+            this.fileList = []
             //设置章节id
             this.video.chapterId = chapterId
+
         },
         //添加小节
         addVideo() {
             //设置课程id
             this.video.courseId = this.courseId
+            console.log(this.video.videoSourceId)
+            console.log(this.video.videoOriginalName)
             video.addVideo(this.video)
                 .then(response => {
                     //关闭弹框
@@ -219,12 +228,11 @@ export default {
                     //提示
                     this.$message({
                         type: 'success',
-                        message: '添加章节成功!'
+                        message: '添加小节成功!'
                     });
                     //刷新页面
                     this.getChapterVideo()
                 })
-            
         },
         saveOrUpdateVideo() {
             this.addVideo()
