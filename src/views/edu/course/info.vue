@@ -111,7 +111,7 @@ export default {
                 teacherId: '',
                 lessonNum: 0,
                 description: '',
-                cover: '/static/01.jpg',
+                cover: 'https://p1.ssl.qhimgs1.com/sdr/400__/t016285e89909a8c421.jpg',
                 price: 0
             },
             courseId:'',
@@ -221,7 +221,7 @@ export default {
                         message: '添加课程信息成功!'
                     });
                     //跳转到第二步
-                    this.$router.push({path:'/course/chapter/'+response.data.courseId})
+                    this.$router.push({path:'/edu/course/chapter/'+response.data.courseId})
                 })
         },
         //修改课程
@@ -234,7 +234,7 @@ export default {
                         message: '修改课程信息成功!'
                     });
                     //跳转到第二步
-                    this.$router.push({path:'/course/chapter/'+this.courseId})
+                    this.$router.push({path:'/edu/course/chapter/'+this.courseId})
                 })
         },
         saveOrUpdate() {

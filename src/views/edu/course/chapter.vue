@@ -324,11 +324,11 @@ export default {
                 })
         },
         previous() {
-            this.$router.push({path:'/course/info/'+this.courseId})
+            this.$router.push({path:'/edu/course/info/'+this.courseId})
         },
         next() {
             //跳转到第二步
-            this.$router.push({path:'/course/publish/'+this.courseId})
+            this.$router.push({path:'/edu/course/publish/'+this.courseId})
         }
     }
 }
